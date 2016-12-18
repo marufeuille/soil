@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+    jQuery.get("http://192.168.0.57:5000/data", {}, function (dat) {
+console.log(dat);
+        var canvas = document.getElementById("stage");
+        var chart = new Chart(canvas, {
+            type: "line",
+            data: dat["ResultSet"],
+            options: {
+                xAxes: [{
+                    type: "linear",
+                    position: "bottom",
+                    display: true,
+                    ticks: {
+                        max:10,
+                        min:0,
+                        stepSize: 1
+                    }
+                }],
+                  responsive: true
+            }
+        });
+    });
+}
+
+</script>
+<title> test </title>
+</head>
+<body>
+<canvas id="stage" height="450" width="800"></canvas>
+</body>
+</html>
